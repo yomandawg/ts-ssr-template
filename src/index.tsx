@@ -1,15 +1,28 @@
 import 'babel-polyfill';
 import express, { Request, Response } from 'express';
+import proxy from 'express-http-proxy';
 import { renderer, storeCreator } from 'helpers';
 import { AsyncRouteConfig, matchRoutes } from 'react-router-config';
 import { Routes } from '@utils';
 
 export const app = express();
 
+// TODO: setup proxy middleware for possible authentication
+app.use(
+  '/api',
+  proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(proxyReqOpts) {
+      if (proxyReqOpts.headers) {
+        proxyReqOpts.headers['x-forwarded-host'] = 'localhost:3000';
+      }
+      return proxyReqOpts;
+    },
+  })
+);
 app.use(express.static('public'));
 
 app.get('*', (req: Request, res: Response) => {
-  const store = storeCreator();
+  const store = storeCreator(req);
 
   const routes = matchRoutes(Routes, req.path);
 
@@ -20,10 +33,6 @@ app.get('*', (req: Request, res: Response) => {
   Promise.all(promises).then(() => {
     res.send(renderer(req, store));
   });
-
-  // const content = renderer(req, store);
-
-  // res.send(content);
 });
 
 app.listen(process.env.PORT || 3000, () => {

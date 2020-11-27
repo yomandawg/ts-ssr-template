@@ -6,11 +6,12 @@
 ## Features
 
 ✔️ Fully-functional and reusable React SSR App<br/>
-✔️ Express.js with isomorphic React<br/>
+✔️ Express.js BFF with isomorphic React<br/>
 ✔️ Redux with typed Actions<br/>
-✔️ Async handling with Redux Thunk<br/>
-➖ TypeScript implementation with strong type definitions<br/>
-➖ Webpack bundling on both Client and Server<br/>
+✔️ Async handling with Redux Thunk and Axios<br/>
+✔️ Session requests with cookie-forwarding<br/>
+✔️ TypeScript implementation with strong type definitions<br/>
+✔️ Webpack bundling on both Client and Server<br/>
 ➖ Testing with Jest and React Testing Libary
 
 ## Architecture
@@ -21,6 +22,9 @@ _Render Flow_<br />
 
 _Redux Integration_<br />
 ![Redux Integration](./assets/redux_integration.svg)
+
+_Session Control_<br />
+![Session Control](./assets/session_control.svg)
 
 ## License
 

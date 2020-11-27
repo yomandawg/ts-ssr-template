@@ -11,5 +11,14 @@ declare module '@actions/user' {
     payload: User[];
   }
 
-  type UserAction = GetUsersAction | Action<ActionType.GET_USERS_ERROR>;
+  interface GetCurrentUserAction extends Action<ActionType.GET_CURRENT_USER> {
+    payload: User;
+  }
+
+  /**add any new actions */
+
+  type UserAction =
+    | GetUsersAction
+    | GetCurrentUserAction
+    | Action<ActionType.GET_USERS_ERROR>;
 }
