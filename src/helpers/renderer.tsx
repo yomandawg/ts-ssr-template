@@ -5,6 +5,7 @@ import { StaticRouter } from 'react-router-dom';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
+import serialize from 'serialize-javascript';
 
 import { Routes } from '@utils/Routes';
 
@@ -17,30 +18,18 @@ export const renderer = (req: Request, store: Store): string => {
     </Provider>
   );
 
+  const preloadedState = store.getState();
+
   return `
     <html>
       <head></head>
       <body>
         <div id="root">${content}</div>
+        <script>
+          window.__PRELOADED_STATE__ = ${serialize(preloadedState)}
+        </script>
         <script src="bundle.js"></script>
       </body>
     </html>
   `;
-
-  // const preloadedState = store.getState();
-  // return `
-  //   <html>
-  //     <head></head>
-  //     <body>
-  //       <div id="root">${content}</div>
-  //       <script>
-  //         __PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-  //           /</g,
-  //           '\\u003c'
-  //         )}
-  //       </script>
-  //       <script src="bundle.js"></script>
-  //     </body>
-  //   </html>
-  // `;
 };

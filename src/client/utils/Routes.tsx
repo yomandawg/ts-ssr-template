@@ -1,10 +1,9 @@
-// import React from 'react';
-// import { Route } from 'react-router-dom';
 import { AsyncRouteConfig } from 'react-router-config';
+import App from 'client/App';
+import Home from '@pages/Home';
+import UserList from '@pages/UserList';
 
-import { Home } from '@components/Home';
-import { UserList, loadData } from '@components/UserList';
-
+// TODO check if using react-router Route works
 // export const Routes = () => {
 //   return (
 //     <>
@@ -16,13 +15,17 @@ import { UserList, loadData } from '@components/UserList';
 
 export const Routes: AsyncRouteConfig[] = [
   {
-    path: '/',
-    component: Home,
-    exact: true,
-  },
-  {
-    path: '/users',
-    component: UserList,
-    loadData,
+    ...App,
+    routes: [
+      {
+        path: '/',
+        ...Home,
+        exact: true,
+      },
+      {
+        path: '/users',
+        ...UserList,
+      },
+    ],
   },
 ];

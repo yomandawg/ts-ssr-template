@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { State, LoadData } from '@redux';
-import { User, getUsers } from '@actions';
+import { User, getUsers, UserAction } from '@actions';
 
-export const UserList = () => {
+const UserList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,6 +27,11 @@ export const UserList = () => {
   );
 };
 
-export const loadData: LoadData = function (store) {
-  return store.dispatch(getUsers());
+const loadData: LoadData = function ({ dispatch }) {
+  return dispatch(getUsers());
+};
+
+export default {
+  component: UserList,
+  loadData,
 };
