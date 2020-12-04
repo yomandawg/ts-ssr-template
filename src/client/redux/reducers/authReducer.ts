@@ -1,9 +1,9 @@
-import { ActionType, UserAction } from '@actions';
+import { ActionType, AuthAction } from '@actions';
 
-export const authReducer = (state = null, action: UserAction) => {
+export const authReducer = (state = {}, action: AuthAction) => {
   switch (action.type) {
-    case ActionType.GET_CURRENT_USER:
-      return action.payload || false;
+    case ActionType.GET_AUTH:
+      return action.payload;
     default:
       return state;
   }

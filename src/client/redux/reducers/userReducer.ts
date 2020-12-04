@@ -1,4 +1,5 @@
-import { ActionType, User, UserAction } from '@actions';
+import { User } from 'types';
+import { ActionType, UserAction } from '@actions';
 
 export const userReducer = (state: User[] = [], action: UserAction) => {
   switch (action.type) {

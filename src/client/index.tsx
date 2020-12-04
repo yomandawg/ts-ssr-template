@@ -7,7 +7,7 @@ import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 
 import { store } from '@redux';
-import { Routes } from '@utils';
+import { Routes } from 'client/Routes';
 
 ReactDOM.hydrate(
   <Provider store={store}>

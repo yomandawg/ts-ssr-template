@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { User } from 'types';
 import { State, LoadData } from '@redux';
-import { User, getUsers } from '@actions';
+import { getUsers } from '@actions';
 
-export const UserList = () => {
+const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,6 +28,11 @@ export const UserList = () => {
   );
 };
 
-export const loadData: LoadData = function (store) {
-  return store.dispatch(getUsers());
+const loadData: LoadData = function ({ dispatch }) {
+  return dispatch(getUsers());
+};
+
+export default {
+  component: Users,
+  loadData,
 };

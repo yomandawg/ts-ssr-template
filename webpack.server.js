@@ -13,7 +13,7 @@ const config = () => {
   return {
     mode: 'development',
     target: 'node',
-    entry: './src/index.tsx',
+    entry: './src/index.ts',
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'build'),

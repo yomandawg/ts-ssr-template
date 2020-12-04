@@ -5,7 +5,7 @@
 
 ## Features
 
-✔️ Fully-functional and reusable React SSR App<br/>
+✔️ Fully-functional React SSR App<br/>
 ✔️ Express.js BFF with isomorphic React<br/>
 ✔️ Redux with typed Actions<br/>
 ✔️ Async handling with Redux Thunk and Axios<br/>

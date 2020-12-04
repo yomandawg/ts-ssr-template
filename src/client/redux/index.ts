@@ -2,10 +2,11 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 
-import { userReducer, authReducer } from '@redux/reducers';
+import { authReducer, profileReducer, userReducer } from '@redux/reducers';
 
 export const reducers = combineReducers<State>({
   auth: authReducer,
+  profile: profileReducer,
   users: userReducer,
 });
 

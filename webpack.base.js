@@ -40,7 +40,6 @@ const config = {
     alias: {
       '@components': path.resolve(__dirname, 'src/client/components'),
       '@pages': path.resolve(__dirname, 'src/client/pages'),
-      '@utils': path.resolve(__dirname, 'src/client/utils'),
       '@redux': path.resolve(__dirname, 'src/client/redux'),
       '@actions': path.resolve(__dirname, 'src/client/actions'),
     },

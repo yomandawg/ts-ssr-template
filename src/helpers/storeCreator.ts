@@ -5,7 +5,7 @@ import axios from 'axios';
 import { State, reducers } from '@redux';
 
 export const storeCreator = (req: Request) => {
-  let preloadedState: State = { users: [] };
+  let preloadedState: State = { auth: null, profile: [], users: [] };
 
   // cookie-forward
   const axiosInstance = axios.create({

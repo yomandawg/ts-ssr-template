@@ -1,11 +1,12 @@
 import { Store, Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { User } from '@actions';
 import { AxiosInstance } from 'axios';
+import { Auth, Profile, User } from 'types';
 
 declare module '@redux' {
   interface State {
-    auth: User | undefined;
+    auth: Auth;
+    profile: Profile;
     users: User[];
   }
 

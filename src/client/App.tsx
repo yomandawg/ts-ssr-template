@@ -3,9 +3,13 @@ import { renderRoutes, AsyncRouteConfig } from 'react-router-config';
 
 import Header from '@components/Header';
 import { LoadData } from '@redux';
-import { getCurrentUser } from '@actions';
+import { getAuth } from '@actions';
 
-const App: React.FC<{ route: AsyncRouteConfig }> = ({ route }) => {
+type AppProps = {
+  route: AsyncRouteConfig;
+};
+
+const App = ({ route }: AppProps) => {
   return (
     <div>
       <Header />
@@ -15,10 +19,10 @@ const App: React.FC<{ route: AsyncRouteConfig }> = ({ route }) => {
 };
 
 const loadData: LoadData = function ({ dispatch }) {
-  return dispatch(getCurrentUser());
+  return dispatch(getAuth());
 };
 
 export default {
   component: App,
   loadData,
-} as AsyncRouteConfig;
+};
