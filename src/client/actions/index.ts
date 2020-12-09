@@ -1,57 +1,71 @@
-import { Auth, Profile, User } from 'types';
-import { UserAction, AuthAction } from '@actions';
-import { AsyncActionCreator } from '@redux';
+import { Auth, Foo, Bar } from 'types/client/schema';
+import {
+  GetAuthAction,
+  GetFooAction,
+  GetBarAction,
+} from 'types/client/actions';
+import { ThunkActionCreator } from 'types/client/redux';
 
+// Example Action Types
 export enum ActionType {
   GET_AUTH,
-  GET_AUTH_ERROR,
-  GET_PROFILE,
-  GET_PROFILE_ERROR,
-  GET_USERS,
-  GET_USERS_ERROR,
+  GET_AUTH_SUCCESS,
+  GET_AUTH_FAIL,
+  GET_FOO,
+  GET_FOO_SUCCESS,
+  GET_FOO_FAIL,
+  /**Bar data, keep-in-mind, is for auth-approved use */
+  GET_BAR,
+  GET_BAR_SUCCESS,
+  GET_BAR_FAIL,
 }
 
-export const getAuth: AsyncActionCreator<AuthAction> = () => {
+// TODO change Thunk to Saga
+
+// Example Auth-related action
+export const getAuth: ThunkActionCreator<GetAuthAction> = () => {
   return async (dispatch, getState, api) => {
     try {
-      const res = await api.get<Auth>('/current_user');
+      const res = await api.get<Auth>('/current_user'); // IMPORTANT: /current_user endpoint is restricted for testing only
 
       return dispatch({
-        type: ActionType.GET_AUTH,
-        payload: res.data,
+        type: ActionType.GET_AUTH_SUCCESS,
+        payload: Object.assign({}, res.data),
       });
     } catch (e) {
-      return { type: ActionType.GET_AUTH_ERROR };
+      return dispatch({ type: ActionType.GET_AUTH_FAIL });
     }
   };
 };
 
-export const getProfile: AsyncActionCreator<ProfileAction> = () => {
+// Example async action creator
+export const getFoo: ThunkActionCreator<GetFooAction> = () => {
   return async (dispatch, getState, api) => {
     try {
-      const res = await api.get<Profile>('/admins');
+      const res = await api.get<Foo>('/users'); // IMPORTANT: /users endpoint is restricted for testing only
 
       return dispatch({
-        type: ActionType.GET_PROFILE,
+        type: ActionType.GET_FOO_SUCCESS,
         payload: res.data,
       });
     } catch (e) {
-      return { type: ActionType.GET_PROFILE_ERROR };
+      return dispatch({ type: ActionType.GET_FOO_FAIL });
     }
   };
 };
 
-export const getUsers: AsyncActionCreator<UserAction> = () => {
+// Example async action creator which will require authentication to create
+export const getBar: ThunkActionCreator<GetBarAction> = () => {
   return async (dispatch, getState, api) => {
     try {
-      const res = await api.get<User[]>('/users');
+      const res = await api.get<Bar>('/admins'); // IMPORTANT: /admins endpoint is restricted for testing only
 
       return dispatch({
-        type: ActionType.GET_USERS,
+        type: ActionType.GET_BAR_SUCCESS,
         payload: res.data,
       });
     } catch (e) {
-      return { type: ActionType.GET_USERS_ERROR };
+      return { type: ActionType.GET_BAR_FAIL };
     }
   };
 };

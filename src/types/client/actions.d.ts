@@ -1,20 +1,27 @@
 import { Action } from 'redux';
-import { Auth, User, Profile } from 'types';
-import { ActionType } from '@actions';
+import { Auth, Foo, Bar } from 'types/client/schema';
+import { ActionType } from 'client/actions';
 
-declare module '@actions' {
-  interface GetUsersAction extends Action<ActionType.GET_USERS> {
-    payload: User[];
-  }
-  type UserAction = GetUsersAction | Action<ActionType.GET_USERS_ERROR>;
-
-  interface GetProfileAction extends Action<ActionType.GET_PROFILE> {
-    payload: Profile;
-  }
-  type ProfileAction = GetProfileAction | Action<ActionType.GET_PROFILE_ERROR>;
-
-  interface GetAuthAction extends Action<ActionType.GET_AUTH> {
-    payload: Auth;
-  }
-  type AuthAction = GetAuthAction | Action<ActionType.GET_AUTH_ERROR>;
+export interface GetAuthAction
+  extends Action<
+    ActionType.GET_AUTH | ActionType.GET_AUTH_SUCCESS | ActionType.GET_AUTH_FAIL
+  > {
+  payload?: Auth;
 }
+export type AuthAction = GetAuthAction; // | ...
+
+export interface GetFooAction
+  extends Action<
+    ActionType.GET_FOO | ActionType.GET_FOO_SUCCESS | ActionType.GET_FOO_FAIL
+  > {
+  payload?: Foo;
+}
+export type FooAction = GetFooAction; // | ...
+
+export interface GetBarAction
+  extends Action<
+    ActionType.GET_BAR | ActionType.GET_BAR_SUCCESS | ActionType.GET_BAR_FAIL
+  > {
+  payload?: Bar;
+}
+export type BarAction = GetBarAction; // | ...

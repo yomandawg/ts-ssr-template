@@ -12,7 +12,6 @@
 ✔️ Session requests with cookie-forwarding<br/>
 ✔️ TypeScript implementation with strong type definitions<br/>
 ✔️ Webpack bundling on both Client and Server<br/>
-➖ Testing with Jest and React Testing Libary
 
 ## Architecture
 
@@ -34,10 +33,6 @@ MIT
 
 ### TODO
 
-➖ inspect `[custom].d.ts`<br />
-➖ organize logics<br/>
 ➖ add Webpack plugins<br/>
 ➖ test polyfills<br/>
 ➖ check dependencies<br/>
-➖ setup Jest<br/>
-➖ separate HTML templates

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { State, LoadData } from '@redux';
-import { getAuth } from '@actions';
+
+import { getAuth } from 'client/actions';
+import { useAuth } from 'client/hooks';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const Header = () => {
     dispatch(getAuth());
   }, [dispatch]);
 
-  const auth = useSelector((state: State) => state.auth);
+  const auth = useAuth();
 
   const authButton = auth ? (
     <a href="/api/logout">Logout</a>
@@ -20,12 +21,12 @@ const Header = () => {
   );
 
   return (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/users">Users</Link>
-      <Link to="/profile">Profile</Link>
+    <div>
+      <Link to="/">Example</Link>
+      <Link to="/private">Private</Link>
       {authButton}
-    </>
+      <Link to="/404">404</Link>
+    </div>
   );
 };
 
