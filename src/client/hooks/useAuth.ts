@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { State } from '@redux';
+import { State } from 'types/client/redux';
 
+// FIXME: refactor to useMemo
 export function useAuth() {
-  const auth = useSelector((state: State) => state.auth);
+  const auth = useSelector((state: State) => {
+    return state.auth;
+  });
 
   if (auth) {
-    return Object.getOwnPropertyNames(auth).length ? auth : null;
+    return Object.getOwnPropertyNames(auth).length ? auth : false;
   }
-
-  return false;
+  return null;
 }

@@ -1,9 +1,11 @@
+/**the render server AKA BFF*/
 import 'babel-polyfill';
 import express, { Request, Response } from 'express';
 import proxy from 'express-http-proxy';
 import { renderer, storeCreator } from 'helpers';
 import { StaticRouterContext } from 'react-router';
 import { AsyncRouteConfig, matchRoutes } from 'react-router-config';
+
 import { Routes } from 'client/Routes';
 
 export const app = express();
@@ -13,8 +15,9 @@ app.use(
   '/api',
   proxy('http://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator(proxyReqOpts) {
+      // proxy setup
       if (proxyReqOpts.headers) {
-        proxyReqOpts.headers['x-forwarded-host'] = 'localhost:3000';
+        proxyReqOpts.headers['x-forwarded-host'] = 'localhost:3000'; // the public
       }
       return proxyReqOpts;
     },
@@ -41,14 +44,15 @@ app.get('*', (req: Request, res: Response) => {
     });
 
   Promise.all(promises).then(() => {
-    const context: StaticRouterContext = {};
-    const content = renderer(req, store, context);
+    const routerContext: StaticRouterContext = {};
+
+    const content = renderer(req, store, routerContext);
 
     // handle http codes
-    if (context.url) {
-      return res.redirect(301, context.url); // redirect
+    if (routerContext.url) {
+      return res.redirect(301, routerContext.url); // redirect
     }
-    if (context.statusCode === 404) {
+    if (routerContext.statusCode === 404) {
       return res.status(404).send(content); // not found
     }
 

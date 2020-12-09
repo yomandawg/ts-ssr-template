@@ -1,9 +1,8 @@
 import { AsyncRouteConfig } from 'react-router-config';
-import App from 'client/App';
-import Home from '@pages/Home';
-import Profile from '@pages/Profile';
-import Users from '@pages/Users';
-import NotFound from '@pages/NotFound';
+import Main from 'client/Main';
+import Example from 'client/pages/Example';
+import Private from 'client/pages/Private';
+import NotFound from 'client/pages/NotFound';
 
 // TODO check if using react-router Route works
 // export const Routes = () => {
@@ -17,20 +16,16 @@ import NotFound from '@pages/NotFound';
 
 export const Routes: AsyncRouteConfig[] = [
   {
-    ...App,
+    ...Main,
     routes: [
       {
         path: '/',
-        ...Home,
         exact: true,
+        ...Example,
       },
       {
-        path: '/profile',
-        ...Profile,
-      },
-      {
-        path: '/users',
-        ...Users,
+        path: '/private',
+        ...Private,
       },
       {
         ...NotFound,

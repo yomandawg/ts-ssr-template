@@ -34,10 +34,7 @@ MIT
 
 ### TODO
 
-➖ inspect `[custom].d.ts`<br />
-➖ organize logics<br/>
 ➖ add Webpack plugins<br/>
 ➖ test polyfills<br/>
 ➖ check dependencies<br/>
 ➖ setup Jest<br/>
-➖ separate HTML templates

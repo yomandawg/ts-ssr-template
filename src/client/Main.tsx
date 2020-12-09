@@ -1,20 +1,17 @@
 import React from 'react';
 import { renderRoutes, AsyncRouteConfig } from 'react-router-config';
 
-import Header from '@components/Header';
-import { LoadData } from '@redux';
-import { getAuth } from '@actions';
+import { LoadData } from 'types/client/redux';
+import Header from 'client/components/Header';
+import { getAuth } from 'client/actions';
 
-type AppProps = {
-  route: AsyncRouteConfig;
-};
-
-const App = ({ route }: AppProps) => {
+// The main component for custom routes
+const Main = ({ route }: { route: AsyncRouteConfig }) => {
   return (
-    <div>
+    <>
       <Header />
       {renderRoutes(route.routes)}
-    </div>
+    </>
   );
 };
 
@@ -23,6 +20,6 @@ const loadData: LoadData = function ({ dispatch }) {
 };
 
 export default {
-  component: App,
+  component: Main,
   loadData,
 };

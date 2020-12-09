@@ -1,18 +1,20 @@
 import { Store, Action, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
-import { Auth, Profile, User } from 'types';
+import { Auth, Foo, Bar } from 'types/client/schema';
 
-declare module '@redux' {
-  interface State {
-    auth: Auth;
-    profile: Profile;
-    users: User[];
-  }
+import { Dispatch } from 'redux';
 
-  type AsyncActionCreator<T extends Action> = ActionCreator<
-    ThunkAction<Promise<T>, State, AxiosInstance, T>
-  >;
-
-  type LoadData = ({ dispatch }: Store) => Promise<any>; // SSR Router data load helper
+export interface State {
+  auth?: Auth;
+  foo?: Foo;
+  bar?: Bar;
 }
+
+export type ThunkActionCreator<T extends Action> = ActionCreator<
+  ThunkAction<Promise<T>, State, AxiosInstance, T>
+>;
+
+// TODO: find correct way to describe LoadData
+// SSR Router data load (server-side state generation) helper
+export type LoadData = ({ dispatch }: Store) => Promise<T>;
