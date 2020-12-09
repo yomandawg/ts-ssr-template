@@ -1,9 +1,13 @@
-import { ActionType, UserAction } from '@actions';
+import { Auth } from 'types/client/schema';
+import { AuthAction } from 'types/client/actions';
+import { ActionType } from 'client/actions';
 
-export const authReducer = (state = null, action: UserAction) => {
+const initialState: Auth | null = null;
+
+export const authReducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
-    case ActionType.GET_CURRENT_USER:
-      return action.payload || false;
+    case ActionType.GET_AUTH_SUCCESS:
+      return action.payload;
     default:
       return state;
   }

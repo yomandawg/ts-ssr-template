@@ -1,30 +1,34 @@
 import { AsyncRouteConfig } from 'react-router-config';
-import App from 'client/App';
-import Home from '@pages/Home';
-import UserList from '@pages/UserList';
+import Main from 'client/Main';
+import Example from 'client/pages/Example';
+import Private from 'client/pages/Private';
+import NotFound from 'client/pages/NotFound';
 
 // TODO check if using react-router Route works
 // export const Routes = () => {
 //   return (
 //     <>
 //       <Route exact path="/" component={Home} />
-//       <Route path="/users" component={UserList} />
+//       <Route path="/users" component={Users} />
 //     </>
 //   );
 // };
 
 export const Routes: AsyncRouteConfig[] = [
   {
-    ...App,
+    ...Main,
     routes: [
       {
         path: '/',
-        ...Home,
         exact: true,
+        ...Example,
       },
       {
-        path: '/users',
-        ...UserList,
+        path: '/private',
+        ...Private,
+      },
+      {
+        ...NotFound,
       },
     ],
   },
