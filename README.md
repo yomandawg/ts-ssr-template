@@ -12,7 +12,6 @@
 ✔️ Session requests with cookie-forwarding<br/>
 ✔️ TypeScript implementation with strong type definitions<br/>
 ✔️ Webpack bundling on both Client and Server<br/>
-➖ Testing with Jest and React Testing Libary
 
 ## Architecture
 
@@ -37,4 +36,3 @@ MIT
 ➖ add Webpack plugins<br/>
 ➖ test polyfills<br/>
 ➖ check dependencies<br/>
-➖ setup Jest<br/>
