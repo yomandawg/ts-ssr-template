@@ -5,7 +5,6 @@
 
 ## Features
 
-✔️ Fully-functional React SSR App<br/>
 ✔️ Express.js BFF with isomorphic React<br/>
 ✔️ Redux with typed Actions<br/>
 ✔️ Async handling with Redux Thunk and Axios<br/>
@@ -24,15 +23,3 @@ _Redux Integration_<br />
 
 _Session Control_<br />
 ![Session Control](./assets/session_control.svg)
-
-## License
-
-MIT
-
----
-
-### TODO
-
-➖ add Webpack plugins<br/>
-➖ test polyfills<br/>
-➖ check dependencies<br/>
