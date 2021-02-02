@@ -24,15 +24,3 @@ _Redux Integration_<br />
 
 _Session Control_<br />
 ![Session Control](./assets/session_control.svg)
-
-## License
-
-MIT
-
----
-
-### TODO
-
-➖ add Webpack plugins<br/>
-➖ test polyfills<br/>
-➖ check dependencies<br/>
